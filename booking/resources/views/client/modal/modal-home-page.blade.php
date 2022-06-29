@@ -27,11 +27,14 @@
                         vật lý * cơ học</label>
                 </div>
                 <div class="form-file float-left mt-4">
-                    <input type="file" name="file" value="file" class="file_upload" id="file-select"><br>
+                    <input type="file" name="file" value="file" class="file_upload" onchange="return fileValidation()"
+                           id="file-select"><br>
+                    <!-- Image preview -->
+                    <div id="imagePreview"></div>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary btn-home-page-next btn-save">Next</button>
+                <button type="button" class="btn btn-primary btn-home-page-next btn-save" onclick="return validate()">Next</button>
             </div>
         </div>
     </form>
@@ -49,7 +52,7 @@
         data.append("file",myFile.files[0]);
     }
      $(".automatic").hide();
-    $('.comparison_results').hide();
+     $('.comparison_results').hide();
      $('.btn-home-page-next').on('click', function (event)  {
          let data = new FormData();
          let form_page = $(this).parents('#form_page');
@@ -78,6 +81,8 @@
                   toastr.success('call api success');
             }, error: function (error) {
                 console.log(error);
+                form_page.find('.btn-save').prop('disabled', false);
+                form_page.find('.btn-save').html('Next');
             }
         });
    })
@@ -98,7 +103,6 @@
                 form_compare.find('.btn-save').html('<i class="fas fa-spinner fa-pulse"></i>');
             },
             success: function(response) {
-                console.log('aaaa');
                 var data = JSON.parse(response);
                 console.log(data);
                 $('.automatic').hide();
@@ -106,8 +110,34 @@
                 $('.btn-back-top').show();
                 form_compare.find('.btn-save').prop('disabled', false);
                 form_compare.find('.btn-save').html('Next');
-                toastr.success('call api compare success');
+                $(".fileName").html(data.filename);
+                $(".survey_subject").html(data.survey_subject);
+                $(".samples").html((data.samples));
+                toastr.success('compare success');
 
+            }, error: function (error) {
+                console.log(error);
+            }
+        });
+    })
+
+    $('.btn-export-compare').on('click', function (event)  {
+        let data = new FormData();
+        let form_compare = $(this).parents('#form_compare');
+        loadDataAjax(data);
+        $.ajax({
+            "url": "https://searchapi.ntq.solutions/highlight",
+            "method": "POST",
+            "timeout": 0,
+            "processData": false,
+            "mimeType": "multipart/form-data",
+            "contentType": false,
+            "data": data,
+            success: function(response) {
+                 console.log(response);
+                form_compare.find('.btn-save').prop('disabled', false);
+                form_compare.find('.btn-save').html('Next');
+                toastr.success('Export file success');
             }, error: function (error) {
                 console.log(error);
             }

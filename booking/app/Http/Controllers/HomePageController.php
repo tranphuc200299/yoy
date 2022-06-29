@@ -25,12 +25,7 @@ class HomePageController extends Controller
 
     public function handleDropFile(Request $request)
     {
-        $request->validate([
-            'file' => ['required'],
-        ]);
-        $data = $request->all();
-
-        return view('client.modal.modal-automatic-collation',compact('data'));
+        return view('client.modal.modal-automatic-collation');
     }
 
     public function showModalCompare(Request $request)

@@ -10,10 +10,31 @@
                 </button>
             </div>
             <div class="modal-body">
-                            <h1>121223421423</h1>
+                <table class="table table-bordered">
+                    <tbody>
+                    <tr>
+                        <th>filename</th>
+                        <td class="fileName"></td>
+                    </tr>
+                    <tr>
+                        <th>survey_subject</th>
+                        <td class="survey_subject"></td>
+                    </tr>
+                    <tr>
+                        <th>
+                            samples
+                        </th>
+                        <td>
+                            <div class="samples">
+
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
             </div>
             <div class="modal-footer compare">
-                <button type="button" class="btn btn-primary float-left">Yes</button>
+                <button type="button" class="btn btn-primary float-left btn-export-compare">Yes</button>
                 <button type="button" class="btn btn-primary btn-back-top" data-dismiss="modal">No</button>
             </div>
         </div>
