@@ -55,3 +55,13 @@ img{
 .automatic{
     display: none;
 }
+.comparison-error .list-error li{
+    text-decoration: none;
+    list-style: none!important;
+    line-height: 20px;
+    padding-left: 20px;
+}
+.comparison-error .list-error label{
+  font-weight: bold;
+  line-height: 20px;
+}

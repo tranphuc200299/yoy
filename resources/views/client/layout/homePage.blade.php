@@ -11,7 +11,7 @@
     <link href="{{ URL::asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ URL::asset('css/animate.css') }}" rel="stylesheet">
     <link href="{{ URL::asset('css/toastr.min.css') }}" rel="stylesheet">
-    <title>yoy</title>
+    <title>oyo</title>
 </head>
 <body>
 <div class="header">
@@ -24,7 +24,7 @@
             </div>
             <div class="col-lg-6 col-md-6 col-xs-3">
                 <div class="title-right float-lg-right">
-
+                    <h3><b>Home page</b></h3>
                 </div>
             </div>
         </div>

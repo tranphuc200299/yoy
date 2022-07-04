@@ -74,23 +74,28 @@
                     form_page.find('.btn-save').html('<i class="fas fa-spinner fa-pulse"></i>');
                 },
            success: function(response) {
-                  var data = JSON.parse(response);
-                  console.log(data);
-                  form_page.find('.btn-save').prop('disabled', false);
-                  form_page.find('.btn-save').html('Next');
-                  $(".form-homePage").hide();
-                  $(".automatic").show();
-                  $(".fileName").html(data.filename);
-                  $(".survey_subject").html(data.survey_subject);
-                  let samplesArr =  data.samples;
-                  let SampleStr = ' ';
-                  console.log(samplesArr);
-                   samplesArr.forEach(function (e) {
-                       $(".samples").html(SampleStr += e + '</br>');
-                   });
-                    toastr.success('call api success');
+                var data = JSON.parse(response);
+                console.log(data);
+                form_page.find('.btn-save').prop('disabled', false);
+                form_page.find('.btn-save').html('Next');
+                $(".form-homePage").hide();
+                $(".automatic").show();
+                $(".fileName").html(data.filename);
+                $(".survey_subject").html(data.survey_subject);
+                let samplesArr =  data.samples;
+                let SampleStr = ' ';
+                console.log(samplesArr);
+                samplesArr.forEach(function (e) {
+                    $(".samples").html(SampleStr += e + '</br>');
+                });
+                form_page.find('.btn-save').prop('disabled', false);
+                form_page.find('.btn-save').html('Next');
+                toastr.success('call api success');
             }, error: function (error) {
                 console.log(error);
+                if(error.status === 400){
+                    toastr.warning('INVALID_FORMAT');
+                }
                 form_page.find('.btn-save').prop('disabled', false);
                 form_page.find('.btn-save').html('Next');
             }
@@ -101,10 +106,8 @@
         let data = new FormData();
         let form_compare = $(this).parents('#form_compare');
         loadDataAjax(data);
-        let myFile = document.getElementById("file-select");
-        let file_page = myFile.files[0];
-        console.log(2);
-        console.log(file_page);
+        // let myFile = document.getElementById("file-select");
+        // let file_page = myFile.files[0];
         $.ajax({
             "url": "https://searchapi.ntq.solutions/compare",
             "method": "POST",
@@ -119,16 +122,49 @@
             success: function(response) {
                 var data = JSON.parse(response);
                 console.log(data);
-                $('.automatic').hide();
+
+            if(data.total == 0){
                 $('.comparison_results').show();
+                $('.comparison-success').show();
+                $('.comparison-error').hide();
+                $('.automatic').hide();
                 $('.btn-back-top').show();
+
                 form_compare.find('.btn-save').prop('disabled', false);
                 form_compare.find('.btn-save').html('Next');
                 $(".fileName").html(data.filename);
                 $(".survey_subject").html(data.survey_subject);
                 $(".samples").html((data.samples));
                 toastr.success('compare success');
+            }
+            if(data.total > 0){
+                $('.comparison_results').show();
+                $('.automatic').hide();
+                $('.comparison-success').hide();
+                $('.comparison-error').show();
 
+                let samplesArr =  data.mismatches;
+      
+                let SampleStr = ' ';
+                console.log(samplesArr);
+                samplesArr.forEach(function (e) {
+                    $(".sample_number").html(SampleStr += e.sample_number + '</br>');                                  
+                });
+
+                let dataTypeStr = ' ';
+                samplesArr.forEach(function (e) {
+                    $(".data_type").html(dataTypeStr += e.data_type + '</br>');                                  
+                });
+
+                let contentStr = ' ';
+                samplesArr.forEach(function (e) {
+                    $(".content_error").html(contentStr += e.content + '</br>');                                  
+                });
+
+                form_compare.find('.btn-save').prop('disabled', false);
+                form_compare.find('.btn-save').html('Next');
+            }
+            
             }, error: function (error) {
                 console.log(error);
             }

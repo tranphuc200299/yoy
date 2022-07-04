@@ -10,28 +10,52 @@
                 </button>
             </div>
             <div class="modal-body">
-                <table class="table table-bordered">
-                    <tbody>
-                    <tr>
-                        <th>filename</th>
-                        <td class="fileName"></td>
-                    </tr>
-                    <tr>
-                        <th>survey_subject</th>
-                        <td class="survey_subject"></td>
-                    </tr>
-                    <tr>
-                        <th>
-                            samples
-                        </th>
-                        <td>
-                            <div class="samples">
+                <div class="comparison-success">
+                    <table class="table table-bordered">
+                        <tbody>
+                        <tr>
+                            <th>filename</th>
+                            <td class="fileName"></td>
+                        </tr>
+                        <tr>
+                            <th>survey_subject</th>
+                            <td class="survey_subject"></td>
+                        </tr>
+                        <tr>
+                            <th>
+                                samples
+                            </th>
+                            <td>
+                                <div class="samples">
 
-                            </div>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <div class="col-12">
+                        <label for="form-controll"><b>Sẽ export PDF đã check nhé ?</b></label>
+                    </div>
+                </div>
+                <div class="comparison-error">
+                    <dib class="file-name-error">
+                        <h4>File Name</h4>
+                        <label for="form-controller" class="file-name-comparison"></label>
+                    </dib>
+                    <h5>Các item sau không match</h3>
+                    <ul class="list-error">
+                        <label for="sample_number">- Sample_number</label>
+                        <li class="sample_number"></li>
+
+                        <label for="data_type"> - Data Type</label>
+                        <li class="data_type"></li>
+                        
+                        <label for="content_error"> - Content Error</label>
+                        <li class="content_error"></li>
+                    </ul>
+                    <h6>Có export PDF đã check không ?</h6>
+                </div>
+       
             </div>
             <div class="modal-footer compare">
                 <button type="submit" class="btn btn-primary float-left btn-export-compare">Yes</button>
