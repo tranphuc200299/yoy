@@ -6,12 +6,12 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}" />
+    <link href="{{ URL::asset('css/homePage.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="{{ URL::asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ URL::asset('css/animate.css') }}" rel="stylesheet">
     <link href="{{ URL::asset('css/toastr.min.css') }}" rel="stylesheet">
-    <link href="{{ URL::asset('css/homePage.css') }}" rel="stylesheet">
-    <title>modal</title>
+    <title>yoy</title>
 </head>
 <body>
 <div class="header">
@@ -24,7 +24,7 @@
             </div>
             <div class="col-lg-6 col-md-6 col-xs-3">
                 <div class="title-right float-lg-right">
-                    <h3>Home Page</h3>
+
                 </div>
             </div>
         </div>

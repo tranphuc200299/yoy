@@ -24,3 +24,4 @@ Route::get('/dropFile',[HomePageController::class, 'showDropFile'])->name('dropF
 Route::post('/handleDropFile',[HomePageController::class, 'handleDropFile'])->name('handleDropFile.home');
 Route::get('/showModalCompare',[HomePageController::class, 'showModalCompare'])->name('showModalCompare.home');
 Route::post('/handlerCompare',[HomePageController::class, 'handlerCompare'])->name('handlerCompare.home');
+Route::post('/handlerExportFile',[HomePageController::class, 'handlerExportFile'])->name('handlerExport.home');

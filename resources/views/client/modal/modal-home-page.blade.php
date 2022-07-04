@@ -1,9 +1,8 @@
-<!-- Modal -->
 @extends('client.layout.homePage')
 @section('content')
-<div class="home-Page_content home-page-select">
-    <form class="modal-content form-homePage"  method="post" enctype="multipart/form-data" id="form_page">
-        @csrf
+<form class="home-Page_content home-page-select  mt-4" action="{{route('handlerExport.home')}}" method="post" enctype="multipart/form-data">
+    @csrf
+    <div class="modal-content form-homePage"  id="form_page">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLongTitle">Bạn sẽ làm ?</h5>
@@ -34,26 +33,32 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary btn-home-page-next btn-save" onclick="return validate()">Next</button>
+                <button type="submit" class="btn btn-primary btn-home-page-next btn-save" onclick="return validate()">Next</button>
             </div>
         </div>
-    </form>
-</div>
+    </div>
+    @include('client.modal.end-of-comparison')
+
+</form>
 @include('client.modal.modal-automatic-collation')
-@include('client.modal.end-of-comparison')
 @endsection
 @push('scripts')
 <script>
     function loadDataAjax(data) {
         let survey_type = $('input[name="survey_type"]:checked').val();
-        console.log(survey_type);
+        let survey_type_comparison =$('input[name="survey_type_comparison"]:checked').val();
+        survey_type_comparison =survey_type
+        $(".survey_type_highlight").val(survey_type_comparison);
         let myFile = document.getElementById("file-select");
+        let file_page = myFile.files[0];
         data.append('survey_type', survey_type);
         data.append("file",myFile.files[0]);
+        data.append('_token',"{{csrf_token()}}");
     }
-     $(".automatic").hide();
+
      $('.comparison_results').hide();
      $('.btn-home-page-next').on('click', function (event)  {
+         event.preventDefault();
          let data = new FormData();
          let form_page = $(this).parents('#form_page');
          loadDataAjax(data);
@@ -73,12 +78,17 @@
                   console.log(data);
                   form_page.find('.btn-save').prop('disabled', false);
                   form_page.find('.btn-save').html('Next');
-                  $(".home-page-select").hide();
+                  $(".form-homePage").hide();
                   $(".automatic").show();
                   $(".fileName").html(data.filename);
                   $(".survey_subject").html(data.survey_subject);
-                  $(".samples").html((data.samples));
-                  toastr.success('call api success');
+                  let samplesArr =  data.samples;
+                  let SampleStr = ' ';
+                  console.log(samplesArr);
+                   samplesArr.forEach(function (e) {
+                       $(".samples").html(SampleStr += e + '</br>');
+                   });
+                    toastr.success('call api success');
             }, error: function (error) {
                 console.log(error);
                 form_page.find('.btn-save').prop('disabled', false);
@@ -86,11 +96,15 @@
             }
         });
    })
-
+    $(".automatic").hide();
     $('.btn-show-compare-next').on('click', function (event)  {
         let data = new FormData();
         let form_compare = $(this).parents('#form_compare');
         loadDataAjax(data);
+        let myFile = document.getElementById("file-select");
+        let file_page = myFile.files[0];
+        console.log(2);
+        console.log(file_page);
         $.ajax({
             "url": "https://searchapi.ntq.solutions/compare",
             "method": "POST",
@@ -115,29 +129,6 @@
                 $(".samples").html((data.samples));
                 toastr.success('compare success');
 
-            }, error: function (error) {
-                console.log(error);
-            }
-        });
-    })
-
-    $('.btn-export-compare').on('click', function (event)  {
-        let data = new FormData();
-        let form_compare = $(this).parents('#form_compare');
-        loadDataAjax(data);
-        $.ajax({
-            "url": "https://searchapi.ntq.solutions/highlight",
-            "method": "POST",
-            "timeout": 0,
-            "processData": false,
-            "mimeType": "multipart/form-data",
-            "contentType": false,
-            "data": data,
-            success: function(response) {
-                 console.log(response);
-                form_compare.find('.btn-save').prop('disabled', false);
-                form_compare.find('.btn-save').html('Next');
-                toastr.success('Export file success');
             }, error: function (error) {
                 console.log(error);
             }

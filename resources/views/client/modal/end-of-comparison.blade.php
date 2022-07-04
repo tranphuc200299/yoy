@@ -1,11 +1,10 @@
-<div class="home-Page_content automatic">
-    <form class="modal-content" method="post" enctype="multipart/form-data" id="form_compare">
+
+<div class="home-Page_content comparison_results mt-4">
+    <form class="modal-content"  method="post" enctype="multipart/form-data" id="export-compare">
         @csrf
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Start đối chiếu tự động </h5>
-                <input type="hidden" value="" name="survey_type" class="survey_type_compare">
-                <input type="hidden"  name="file" class="file_compare">
+                <h5 class="modal-title" id="exampleModalLongTitle">Kết thúc đối chiếu </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -34,10 +33,11 @@
                     </tbody>
                 </table>
             </div>
-            <div class="modal-footer automatic">
-                <button type="button" class="btn btn-primary float-left automatic-back">No (Back)</button>
-                <button type="button" class="btn btn-primary btn-show-compare-next btn-save">OK</button>
+            <div class="modal-footer compare">
+                <button type="submit" class="btn btn-primary float-left btn-export-compare">Yes</button>
+                <button type="button" class="btn btn-primary btn-back-top">No</button>
             </div>
         </div>
     </form>
 </div>
+
