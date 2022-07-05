@@ -24,7 +24,6 @@
             </div>
             <div class="col-lg-6 col-md-6 col-xs-3">
                 <div class="title-right float-lg-right">
-
                 </div>
             </div>
         </div>
