@@ -58,7 +58,10 @@ img{
 .comparison-error .list-error li{
     text-decoration: none;
     list-style: none!important;
-    line-height: 20px;
+}
+.list-error{
+    padding: 0;
+    margin: 0;
 }
 .comparison-error .list-error label{
   font-weight: bold;
@@ -67,4 +70,28 @@ img{
 
 .file_upload{
   margin-bottom: 10px;
+  opacity: 0;
+}
+.preview{
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.preview button{
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    width: 120px;
+    height: auto;
+}
+.preview-hiden{
+    position: relative;
+}
+.preview-file{
+    font-weight: 500;
+}
+.content-success{
+    margin-left: 20px;
+}
+.content-error{
+    margin-left: 20px;
 }

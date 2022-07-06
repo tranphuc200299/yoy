@@ -13,16 +13,16 @@
                 <table class="table table-bordered">
                     <tbody>
                     <tr>
-                        <th>filename</th>
+                        <th>{{__('FileName')}}</th>
                         <td class="fileName"></td>
                     </tr>
                     <tr>
-                        <th>survey_subject</th>
+                        <th>{{__('Survey subject')}}</th>
                         <td class="survey_subject"></td>
                     </tr>
                     <tr>
                         <th>
-                            samples
+                            {{__('Samples')}}
                         </th>
                         <td>
                             <div class="samples">
@@ -33,11 +33,11 @@
                     </tbody>
                 </table>
                 <div class="col-12">
-                        <label for="form-controll"><b>のチェックを開始しますか？</b></label>
+                        <label for="form-controll"><b>{{__('Bạn có muốn bắt đầu kiểm tra không')}}</b></label>
                     </div>
             </div>
             <div class="modal-footer automatic">
-                <button type="button" class="btn btn-primary float-left automatic-back">No (Back)</button>
+                <button type="button" class="btn btn-primary float-left automatic-back">{{__('No')}}</button>
                 <button type="button" class="btn btn-primary btn-show-compare-next btn-save">OK</button>
             </div>
         </div>
