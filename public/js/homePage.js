@@ -15,9 +15,12 @@ function fileValidation() {
     console.log(filePath);
     var allowedExtensions = /(\.pdf)$/i;
     if (!allowedExtensions.exec(filePath)) {
-        toastr.error('Invalid file type');
+        $(".form-message").html('Invalid file type');
         fileInput.value = '';
         return false;
+    }
+    else{
+        $(".form-message").html(' ');
     }
 }
 
@@ -25,7 +28,7 @@ function validate() {
     var fileInput =
         document.getElementById('file-select');
     if (fileInput.files.length === 0) {
-        toastr.warning("Attachment Required");
+        $(".form-message").html('Attachment Required');
         return false;
     }
 }

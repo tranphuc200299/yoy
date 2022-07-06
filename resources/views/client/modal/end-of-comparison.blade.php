@@ -4,7 +4,7 @@
         @csrf
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Kết thúc đối chiếu </h5>
+                <h5 class="modal-title" id="exampleModalLongTitle">照合終了</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -34,26 +34,25 @@
                         </tbody>
                     </table>
                     <div class="col-12">
-                        <label for="form-controll"><b>Sẽ export PDF đã check nhé ?</b></label>
+                        <label for="form-controll"><b>チェックしたPDFを出力しますか。</b></label>
                     </div>
                 </div>
                 <div class="comparison-error">
                     <dib class="file-name-error">
-                        <h4>File Name</h4>
-                        <label for="form-controller" class="file-name-comparison"></label>
+                        <h6><b> ファイル名：</b></h6>
+                        <label for="form-controller" class="file-name-comparison-error"></label>
                     </dib>
-                    <h5>Các item sau không match</h3>
+                    <h6><b>には下記の項目が一致していません。</b></h6>
                     <ul class="list-error">
-                        <label for="sample_number">- Sample_number</label>
-                        <li class="sample_number"></li>
-
-                        <label for="data_type"> - Data Type</label>
-                        <li class="data_type"></li>
-                        
-                        <label for="content_error"> - Content Error</label>
+                    
                         <li class="content_error"></li>
+                        <br>
+                        <li>
+                            <b>
+                                 チェックしたPDFを出力しますか。 ?
+                            </b>                     
+                        </li>
                     </ul>
-                    <h6>Có export PDF đã check không ?</h6>
                 </div>
        
             </div>
