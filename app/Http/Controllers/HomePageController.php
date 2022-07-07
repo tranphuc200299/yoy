@@ -45,7 +45,6 @@ class HomePageController extends Controller
         $request = new \GuzzleHttp\Psr7\Request('POST', 'http://localhost:8080/highlight');
         $res = $client->sendAsync($request, $options)->wait();
         $fileName = $res->getHeaders()['x-filename'][0];
-        dd($res->getBody());
         return Response::download($file->getRealPath(),$fileName, ['Content-Type: application/zip']);
 
     }

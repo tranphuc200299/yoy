@@ -141,7 +141,7 @@
                 console.log(samplesArr);
                 let result = ''
                 samplesArr.forEach(function (e) {
-                    result += ' ・ ' + e.data_type + ' , ' +  e.sample_number+ ' , ' + e.content  + '</br>';                                        
+                    result += e.sample_number ? ' ・ ' + e.sample_number + '    ' + e.data_type + '    ' + e.content  + '</br>' : ' ・ ' + e.data_type + '    ' + e.content  + '</br>';                                        
                 });
                 $(".data_type").html(result);
                 form_compare.find('.btn-save').prop('disabled', false);
