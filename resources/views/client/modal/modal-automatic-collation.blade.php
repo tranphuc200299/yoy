@@ -1,6 +1,5 @@
 <div class="home-Page_content automatic mb-4 mt-4">
     <div class="modal-content" method="post"  enctype="multipart/form-data" id="form_compare">
-        @csrf
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLongTitle">Start đối chiếu tự động </h5>
