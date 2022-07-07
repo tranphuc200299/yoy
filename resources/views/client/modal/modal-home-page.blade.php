@@ -139,7 +139,7 @@
                 let samplesArr =  data.mismatches;
                 let data_type = 'data type :'
                 console.log(samplesArr);
-                let result = ''
+                let result = ' ';
                 samplesArr.forEach(function (e) {
                     result += e.sample_number ? ' ・ ' + e.sample_number + '    ' + e.data_type + '    ' + e.content  + '</br>' : ' ・ ' + e.data_type + '    ' + e.content  + '</br>';                                        
                 });
