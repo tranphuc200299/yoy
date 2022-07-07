@@ -24,9 +24,9 @@ class HomePageController extends Controller
 
     public function handlerExportFile(Request $request)
     {
-        
         $client = new \GuzzleHttp\Client();
         $file = $request->file('file');
+        $fileName = $file->getClientOriginalName();
         $options = [
             'multipart' => [
                 [
@@ -42,12 +42,17 @@ class HomePageController extends Controller
                     ]
                 ]
             ]];
-        $request = new \GuzzleHttp\Psr7\Request('POST', 'http://localhost:8080/highlight');
-        $res = $client->sendAsync($request, $options)->wait();
-        $fileName = $res->getHeaders()['x-filename'][0];
-        dd($res->getBody());
-        return Response::download($file->getRealPath(),$fileName, ['Content-Type: application/zip']);
 
+        $request = new \GuzzleHttp\Psr7\Request('POST', 'https://searchapi.ntq.solutions/highlight');
+        $res = $client->sendAsync($request, $options)->wait();
+        $fileGetContent = $res->getBody()->getContents();
+        $headers  = [
+            "Content-Type" => "application/octet-stream",
+            "Content-Disposition" => 'attachment; filename=' .$fileName . ';',
+        ];
+        return Response()->streamDownload( function() use ($fileGetContent){
+            echo $fileGetContent;
+        },$fileName,$headers);
     }
 
 }
