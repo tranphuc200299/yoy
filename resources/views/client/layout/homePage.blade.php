@@ -7,7 +7,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}" />
     <link href="{{ URL::asset('css/homePage.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="{{ URL::asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ URL::asset('css/animate.css') }}" rel="stylesheet">
     <link href="{{ URL::asset('css/toastr.min.css') }}" rel="stylesheet">
@@ -49,6 +48,7 @@
 <script src="{{ URL::asset('js/wow.min.js')}}"></script>
 <script src="{{ URL::asset('js/jquery.validate.min.js')}}"></script>
 <script src="{{ URL::asset('js/main.js')}}"></script>
+<script src="{{ URL::asset('js/all.min.js')}}"></script>
 @stack('scripts')
 <script src="{{ URL::asset('js/homePage.js')}}"></script>
 </body>

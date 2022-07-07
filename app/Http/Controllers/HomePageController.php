@@ -13,6 +13,7 @@ use Illuminate\Http\UploadedFile;
 use function GuzzleHttp\Promise\all;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Response;
+use Carbon\Carbon;
 
 class HomePageController extends Controller
 {
@@ -23,6 +24,7 @@ class HomePageController extends Controller
 
     public function handlerExportFile(Request $request)
     {
+        
         $client = new \GuzzleHttp\Client();
         $file = $request->file('file');
         $options = [
@@ -40,9 +42,11 @@ class HomePageController extends Controller
                     ]
                 ]
             ]];
-        $request = new \GuzzleHttp\Psr7\Request('POST', 'https://searchapi.ntq.solutions/highlight');
+        $request = new \GuzzleHttp\Psr7\Request('POST', 'http://localhost:8080/highlight');
         $res = $client->sendAsync($request, $options)->wait();
-        return Response::download($file->getRealPath(), $file->getClientOriginalName(), ['Content-Type: application/zip']);
+        $fileName = $res->getHeaders()['x-filename'][0];
+        dd($res->getBody());
+        return Response::download($file->getRealPath(),$fileName, ['Content-Type: application/zip']);
 
     }
 
